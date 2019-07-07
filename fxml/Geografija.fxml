@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="285.0" prefWidth="484.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GeografijaController">
+   <children>
+      <ImageView fitHeight="340.0" fitWidth="484.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/geografijapozadina.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="124.0" text="Geografija" textFill="#ee0404" underline="true">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnPovratak" layoutX="391.0" layoutY="274.0" mnemonicParsing="false" onAction="#GoPovratak" text="Povratak" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="176.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/geograf.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="172.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/glgradovidrzave.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="172.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/tocnonetocno.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="172.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/abc.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnPozGeo" layoutX="230.0" layoutY="86.0" mnemonicParsing="false" onAction="#GoPozGeo" text="Poznati geografi" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnGlGrDr" layoutX="230.0" layoutY="141.0" mnemonicParsing="false" onAction="#GoGlGradDrz" text="Glavni gradovi i države" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnToNe" layoutX="232.0" layoutY="186.0" mnemonicParsing="false" text="Točno/ Netočno" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVisIzb" layoutX="234.0" layoutY="231.0" mnemonicParsing="false" text="Višestruki izbor" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnOdjava" layoutX="116.0" layoutY="276.0" mnemonicParsing="false" onAction="#GoOdjava" text="Odjava" textFill="#f50909">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="22.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/account.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="17.0" layoutY="280.0" text="Korisnik:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="280.0" text="Label" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="364.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ZivotinjeController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/zivotinjapozadina.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="200.0" layoutY="7.0" text="Životinje" textFill="#e40808" underline="true">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="212.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/šapa.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnZiv" layoutX="290.0" layoutY="120.0" mnemonicParsing="false" onAction="#GoZiv" text="Životinje" textFill="#bc0606">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="210.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/tocnonetocno.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="210.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/abc.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnToNe" layoutX="290.0" layoutY="182.0" mnemonicParsing="false" text="Točno/ Netočno" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVisIzb" layoutX="290.0" layoutY="239.0" mnemonicParsing="false" text="Višestruki izbor" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPovratak" layoutX="515.0" layoutY="336.0" mnemonicParsing="false" onAction="#GoPovratak" text="Povratak" textFill="#f20808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnOdjava" layoutX="144.0" layoutY="347.0" mnemonicParsing="false" onAction="#GoOdjava" text="Odjava" textFill="#f50909">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="22.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/account.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="13.0" layoutY="351.0" text="Korisnik:" textFill="#f81818">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="351.0" text="Label">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
