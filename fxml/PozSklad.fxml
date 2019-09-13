@@ -12,30 +12,47 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightpink;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PozSkladController">
    <children>
-      <Label layoutX="197.0" layoutY="7.0" text="Poznati skladatelji" textFill="#ee0808" underline="true">
+      <Label layoutX="175.0" layoutY="8.0" text="Poznati skladatelji" textFill="#ee0808" underline="true">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="Broadway" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="369.0" text="Korisnik:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="76.0" layoutY="369.0" text="Label" />
-      <Button fx:id="btnOdjava" layoutX="120.0" layoutY="365.0" mnemonicParsing="false" onAction="#GoOdjava" text="Odjava" textFill="#f50909">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnPovratak" layoutX="510.0" layoutY="363.0" mnemonicParsing="false" onAction="#GoPovratak" text="Povratak" textFill="#e80909">
+      <Label layoutX="14.0" layoutY="369.0" text="Korisnik:" textFill="CORAL">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="369.0" text="Test">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Button fx:id="btnOdjava" layoutX="120.0" layoutY="365.0" mnemonicParsing="false" onAction="#GoOdjava" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Odjava" textFill="#f50909">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/AirMail-3-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <TabPane layoutY="48.0" prefHeight="311.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <Button fx:id="btnPovratak" layoutX="482.0" layoutY="362.0" mnemonicParsing="false" onAction="#GoPovratak" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Povratak" textFill="#e80909">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/Arrow-left-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TabPane layoutY="48.0" prefHeight="311.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5; -fx-border-color: red;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Johann Sebastian Bach">
+          <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Johann Sebastian Bach">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -50,7 +67,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab text="Wolfgang Amadeus Mozart">
+          <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Wolfgang Amadeus Mozart">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -65,7 +82,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Ludwig van Beethoven">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Ludwig van Beethoven">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -80,7 +97,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Franz Schubert">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Franz Schubert">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -95,7 +112,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Franz Liszt">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Franz Liszt">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>

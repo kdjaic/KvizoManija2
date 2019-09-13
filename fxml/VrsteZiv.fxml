@@ -11,34 +11,51 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightpink;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.VrsteZivController">
    <children>
-      <Label layoutX="219.0" layoutY="6.0" text="Vrste životinja" textFill="#d30404" underline="true">
+      <Label layoutX="207.0" layoutY="7.0" text="Vrste životinja" textFill="#d30404" underline="true">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="Broadway" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="8.0" layoutY="369.0" text="Korisnik:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="73.0" layoutY="369.0" text="Label" />
-      <Button fx:id="btnOdjava" layoutX="115.0" layoutY="365.0" mnemonicParsing="false" onAction="#GoOdjava" text="Odjava" textFill="#f50909">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnPovratak" layoutX="521.0" layoutY="363.0" mnemonicParsing="false" onAction="#GoPovratak" text="Povratak" textFill="#e80909">
+      <Label layoutX="8.0" layoutY="369.0" text="Korisnik:" textFill="CORAL">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="369.0" text="Test">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Button fx:id="btnOdjava" layoutX="115.0" layoutY="365.0" mnemonicParsing="false" onAction="#GoOdjava" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Odjava" textFill="#f50909">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/AirMail-3-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <TabPane layoutY="46.0" prefHeight="308.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <Button fx:id="btnPovratak" layoutX="490.0" layoutY="364.0" mnemonicParsing="false" onAction="#GoPovratak" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Povratak" textFill="#e80909">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/Arrow-left-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TabPane layoutY="46.0" prefHeight="308.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5; -fx-border-color: red;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Sisavci">
+          <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Sisavci">
                <content>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFE4B5; -fx-border-color: red;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Prasisavci">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Prasisavci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -105,7 +122,7 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
-                      <Tab text="Tobolčari">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Tobolčari">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -192,7 +209,7 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
-                        <Tab text="Placentalni sisavci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Placentalni sisavci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -313,11 +330,11 @@
                   </TabPane>
                </content>
             </Tab>
-          <Tab text="Ptice">
+          <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Ptice">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Bubnjavke">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Bubnjavke">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -344,7 +361,7 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
-                      <Tab text="Nojevke">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Nojevke">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -451,7 +468,7 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
-                        <Tab text="Golupčarke">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Golupčarke">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -468,7 +485,7 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
-                        <Tab text="Močvarice">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Močvarice">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -545,7 +562,7 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
-                        <Tab text="Sokolovke">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Sokolovke">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -575,11 +592,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Gmazovi">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Gmazovi">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Kornjače">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Kornjače">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -595,7 +612,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Gušteri">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Gušteri">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -611,7 +628,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Ljuskaši">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Ljuskaši">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -697,7 +714,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Krokodili">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Krokodili">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -727,11 +744,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Vodozemci">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Vodozemci">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Žabe">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Žabe">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -747,7 +764,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                      <Tab text="Repaši">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Repaši">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -763,7 +780,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Beznošci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Beznošci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -793,11 +810,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Ribe">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Ribe">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Besčeljuste">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Besčeljuste">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -833,7 +850,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                      <Tab text="Čeljustouste">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Čeljustouste">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -923,11 +940,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Rakovi">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Rakovi">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Listonošci">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Listonošci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -943,7 +960,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                      <Tab text="Dvoljušturci">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Dvoljušturci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -959,7 +976,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Veslonošci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Veslonošci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -975,7 +992,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Škrgorepci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Škrgorepci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -991,7 +1008,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Vitičari">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Vitičari">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1011,11 +1028,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Mekušci">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Mekušci">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Školjkaši">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Školjkaši">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1041,7 +1058,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                      <Tab text="Puževi">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Puževi">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1057,7 +1074,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Glavonošci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Glavonošci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1093,7 +1110,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Hitoni">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Hitoni">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1113,11 +1130,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Paučnjaci">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Paučnjaci">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Krpelji">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Krpelji">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1133,7 +1150,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                      <Tab text="Pauci">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Pauci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1179,7 +1196,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Štipavci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Štipavci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1195,7 +1212,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Lažištipavci">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Lažištipavci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1215,11 +1232,11 @@
                   </TabPane>
                </content>
             </Tab>
-            <Tab text="Kukci">
+            <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Kukci">
                <content>
                   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Beskrilci">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Beskrilci">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1245,7 +1262,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                      <Tab text="Krilaši">
+                      <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Krilaši">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -1291,7 +1308,7 @@
                                     </Label>
                                  </children></AnchorPane>
                            </content></Tab>
-                        <Tab text="Unutarčeljusnici">
+                        <Tab style="-fx-border-color: red; -fx-background-color: #DEB887;" text="Unutarčeljusnici">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>

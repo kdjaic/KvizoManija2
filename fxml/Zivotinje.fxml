@@ -7,69 +7,89 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="364.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ZivotinjeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ZivotinjeController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../imgs/zivotinjapozadina.png" />
          </image>
       </ImageView>
-      <Label layoutX="200.0" layoutY="7.0" text="Životinje" textFill="#e40808" underline="true">
+      <Label layoutX="187.0" layoutY="7.0" text="Životinje" textFill="#e40808" underline="true">
          <font>
-            <Font name="System Bold" size="48.0" />
+            <Font name="Broadway" size="48.0" />
          </font>
       </Label>
-      <ImageView fitHeight="38.0" fitWidth="49.0" layoutX="212.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../imgs/šapa.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnZiv" layoutX="290.0" layoutY="120.0" mnemonicParsing="false" onAction="#GoZiv" text="Životinje" textFill="#bc0606">
+      <Button fx:id="btnZiv" layoutX="248.0" layoutY="120.0" mnemonicParsing="false" onAction="#GoZiv" prefHeight="31.0" prefWidth="152.0" style="-fx-background-radius: 9,9,9; -fx-border-color: black; -fx-border-radius: 9,9,9; -fx-background-color: #DEB887;" text="Životinje" textFill="#f20808">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/Dog-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="210.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../imgs/tocnonetocno.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="210.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../imgs/abc.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnToNe" layoutX="290.0" layoutY="182.0" mnemonicParsing="false" text="Točno/ Netočno" textFill="#f20808">
+      <Button fx:id="btnToNe" layoutX="248.0" layoutY="184.0" mnemonicParsing="false" onAction="#GoToNe" style="-fx-background-radius: 9,9,9; -fx-border-color: black; -fx-border-radius: 9,9,9; -fx-background-color: #DEB887;" text="Točno/ Netočno" textFill="#f20808">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/10024-thinking-face-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="btnVisIzb" layoutX="290.0" layoutY="239.0" mnemonicParsing="false" text="Višestruki izbor" textFill="#f20808">
+      <Button fx:id="btnVisIzb" layoutX="248.0" layoutY="242.0" mnemonicParsing="false" onAction="#GoVisIz" prefHeight="31.0" prefWidth="152.0" style="-fx-background-radius: 9,9,9; -fx-border-color: black; -fx-border-radius: 9,9,9; -fx-background-color: #DEB887;" text="Višestruki izbor" textFill="#f20808">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/Letter-a-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="btnPovratak" layoutX="515.0" layoutY="336.0" mnemonicParsing="false" onAction="#GoPovratak" text="Povratak" textFill="#f20808">
+      <Button fx:id="btnPovratak" layoutX="482.0" layoutY="346.0" mnemonicParsing="false" onAction="#GoPovratak" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Povratak" textFill="#f20808">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/Arrow-left-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="btnOdjava" layoutX="144.0" layoutY="347.0" mnemonicParsing="false" onAction="#GoOdjava" text="Odjava" textFill="#f50909">
+      <Button fx:id="btnOdjava" layoutX="144.0" layoutY="347.0" mnemonicParsing="false" onAction="#GoOdjava" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Odjava" textFill="#f50909">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/AirMail-3-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
       <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="22.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../imgs/account.png" />
          </image>
       </ImageView>
-      <Label layoutX="13.0" layoutY="351.0" text="Korisnik:" textFill="#f81818">
+      <Label layoutX="13.0" layoutY="351.0" text="Korisnik:" textFill="CORAL">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="86.0" layoutY="351.0" text="Label">
+      <Label layoutX="86.0" layoutY="351.0" text="Test">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

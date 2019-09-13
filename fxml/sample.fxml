@@ -18,36 +18,49 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane opacity="0.5" prefHeight="340.0" prefWidth="484.0">
+      <AnchorPane opacity="0.5" prefHeight="352.0" prefWidth="454.0">
          <children>
-            <ImageView fitHeight="391.0" fitWidth="484.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../imgs/pocetna.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="104.0" fitWidth="93.0" layoutX="384.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               </image></ImageView>
+            <ImageView fitHeight="104.0" fitWidth="93.0" layoutX="477.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../imgs/upitnik1.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="btnPrijava" layoutX="116.0" layoutY="231.0" mnemonicParsing="false" onAction="#GoPrijava" text="Prijava" textFill="#b90303">
+            <Button fx:id="btnPrijava" layoutX="165.0" layoutY="231.0" mnemonicParsing="false" onAction="#GoPrijava" style="-fx-background-radius: 9,9,9; -fx-border-color: black; -fx-border-radius: 9,9,9; -fx-background-color: #DEB887;" text="Prijava" textFill="#b90303">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../imgs/Knob-Smart-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="btnRegistracija" layoutX="261.0" layoutY="231.0" mnemonicParsing="false" onAction="#GoRegistracija" text="Registracija" textFill="#b90303">
+            <Button fx:id="btnRegistracija" layoutX="335.0" layoutY="231.0" mnemonicParsing="false" onAction="#GoRegistracija" style="-fx-background-radius: 9,9,9; -fx-border-color: black; -fx-border-radius: 9,9,9; -fx-background-color: #DEB887;" text="Registracija" textFill="#b90303">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../imgs/Knob-Smart-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Label layoutX="175.0" layoutY="338.0" text="Znanje je moć! :)" textFill="#fc0808">
+            <Label layoutX="245.0" layoutY="320.0" text="Znanje je moć! :)" textFill="#fc0808">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="20.0" text="KvizoManija" textFill="#ff0202">
+            <Label layoutX="14.0" layoutY="29.0" text="KvizoManija" textFill="#ff0202">
                <font>
-                  <Font name="Arial Bold" size="64.0" />
+                  <Font name="Broadway" size="64.0" />
                </font>
             </Label>
          </children></AnchorPane>

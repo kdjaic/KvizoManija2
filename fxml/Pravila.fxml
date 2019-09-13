@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="387.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PravilaController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PravilaController">
    <children>
-      <ImageView fitHeight="381.0" fitWidth="633.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../imgs/booksBilly.png" />
          </image>
       </ImageView>
-      <Label layoutX="75.0" text="Pravila igranja kviza" textFill="#f20707" underline="true">
+      <Label layoutX="22.0" text="Pravila igranja kviza" textFill="#f20707" underline="true">
          <font>
-            <Font name="System Bold" size="48.0" />
+            <Font name="Broadway" size="48.0" />
          </font>
       </Label>
       <Label layoutX="156.0" layoutY="121.0" text="U kvizovima nema vremenskog ograničenja." textFill="#f20d0d">
@@ -44,30 +44,49 @@
             <Image url="@../../imgs/abc.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnPovratak" layoutX="510.0" layoutY="333.0" mnemonicParsing="false" onAction="#GoPovratak" text="Povratak" textFill="#f50808">
+      <Button fx:id="btnPovratak" layoutX="496.0" layoutY="350.0" mnemonicParsing="false" onAction="#GoPovratak" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Povratak" textFill="#f50808">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/Arrow-left-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button fx:id="btnOdjava" layoutX="138.0" layoutY="353.0" mnemonicParsing="false" onAction="#GoOdjava" text="Odjava" textFill="#f50909">
+      <Button fx:id="btnOdjava" layoutX="138.0" layoutY="353.0" mnemonicParsing="false" onAction="#GoOdjava" style="-fx-background-radius: 8,8,8; -fx-border-color: red; -fx-border-radius: 8,8,8; -fx-background-color: #FF7F50; -fx-text-fill: white;" text="Odjava" textFill="#f50909">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imgs/AirMail-3-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
       <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="22.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../imgs/account.png" />
          </image>
       </ImageView>
-      <Label layoutX="13.0" layoutY="355.0" text="Korisnik:" textFill="#f81818">
+      <Label layoutX="13.0" layoutY="355.0" text="Korisnik:" textFill="CORAL">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="82.0" layoutY="355.0" text="Label">
+      <Label layoutX="82.0" layoutY="355.0" text="Test">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="96.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imgs/Stopwatch-Off-icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
