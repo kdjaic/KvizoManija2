@@ -1,302 +1,472 @@
 package sample;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.sql.*;
 
 public class NuVrijController {
 
-    /**
-     * Button za povratak na prethodnu stranicu
-     */
     @FXML  Button btnPovratak;
 
-    /**
-     * Button za povratak na pocetnu stranicu
-     */
     @FXML  Button btnOdjava;
 
-    /**
-     * Button za prikaz jaja
-     */
     @FXML  Button btnJaja;
-    /**
-     * Button za prikaz mlijeka
-     */
+
     @FXML  Button btnMlijeko;
-    /**
-     * Button za prikaz krumpira
-     */
+
     @FXML  Button btnKrumpir;
-    /**
-     * Button za prikaz povrca
-     */
+
     @FXML  Button btnPovrce;
-    /**
-     * Button za prikaz masnoca
-     */
+
     @FXML  Button btnMasnoce;
-    /**
-     * Button za prikaz ribe
-     */
+
     @FXML  Button btnRiba;
-    /**
-     * Button za prikaz mesa
-     */
+
     @FXML  Button btnMeso;
-    /**
-     * Button za prikaz voca
-     */
+
     @FXML  Button btnVoce;
-    /**
-     * Button za prikaz zitarica
-     */
+
     @FXML  Button btnZitarice;
 
-    /**
-     * TextArea za prikaz nutritivnih vrijednosti
-     */
-    @FXML  TextArea lblNuVrij;
+    private ObservableList<NuVrij> NuVrijList;
 
-    /**
-     * Metoda za odjavu
-     * @throws Exception
-     */
+    @FXML
+    TableView<NuVrij> nuvrij = new TableView<>();
+
+    @FXML
+    TableColumn<NuVrij, String> ime = new TableColumn<>();
+
+    @FXML
+    TableColumn<NuVrij, Integer> kalorije = new TableColumn<>();
+    @FXML
+    TableColumn<NuVrij, Integer> proteini = new TableColumn<>();
+
+    @FXML
+    TableColumn<NuVrij, Integer> ugljik = new TableColumn<>();
+    @FXML
+    TableColumn<NuVrij, Integer> masti = new TableColumn<>();
+
+
     public void GoOdjava() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/sample.fxml"));
         Parent root = loader.load();
         btnOdjava.getScene().setRoot(root);
     }
 
-    /**
-     * Metoda za povratak na hranu
-     * @param
-     * @throws IOException
-     */
+
     public void GoPovratak() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Hrana.fxml"));
         Parent root = loader.load();
         btnPovratak.getScene().setRoot(root);
     }
 
-    /**
-     * Metoda za prikaz jaja
-     */
+
     public void GoJaja(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Jaja from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Jaja'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Jaja");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz mlijeka
-     */
     public void GoMlijeko(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Mlijeko from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Mlijeko'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Mlijeko");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz krumpira
-     */
     public void GoKrumpir(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Krumpir from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Krumpir'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Krumpir");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz povrća
-     */
     public void GoPovrce(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Povrce from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Povrce'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Povrce");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz masnoća
-     */
     public void GoMasnoce(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Masnoce from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Masnoce'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Masnoce");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz riba
-     */
     public void GoRiba(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Riba from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Riba'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Riba");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz mesa
-     */
     public void GoMeso(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Meso from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Meso'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Meso");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz voća
-     */
     public void GoVoce(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Voce from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Voce'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Voce");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
 
-    /**
-     * Metoda za prikaz žitarica
-     */
     public void GoZitarice(){
-        lblNuVrij.setText(null);
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select Zitarice from NutritivneVrijednosti");
+            ps = conn.prepareStatement("select ime, kalorije, proteini, ugljikohidrati, masti from NutritivneVrijednosti where vrsta='Zitarice'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("Zitarice");
-                if (s == null){
-                    s = " ";
-                }
-                lblNuVrij.appendText(s + "\n");
+
+            NuVrijList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String ime = rs.getString("ime");
+                int kalorije = rs.getInt("kalorije");
+                int proteini = rs.getInt("proteini");
+                int ugljik = rs.getInt("ugljikohidrati");
+                int masti = rs.getInt("masti");
+
+                NuVrijList.add(new NuVrij(ime, kalorije, proteini, ugljik, masti));
+
             }
-        } catch (Exception ex){
-            lblNuVrij.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        ime.setCellValueFactory(new PropertyValueFactory<>("ime"));
+        kalorije.setCellValueFactory(new PropertyValueFactory<>("kalorije"));
+        proteini.setCellValueFactory(new PropertyValueFactory<>("proteini"));
+        ugljik.setCellValueFactory(new PropertyValueFactory<>("ugljikohidrati"));
+        masti.setCellValueFactory(new PropertyValueFactory<>("masti"));
+
+
+        ime.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((NuVrij)cellData.getValue()).getIme()));});
+        kalorije.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getKalorije())).asObject();});
+        proteini.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getProteini())).asObject();});
+        ugljik.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getUgljik())).asObject();});
+        masti.setCellValueFactory(cellData -> { return (new SimpleIntegerProperty(((NuVrij)cellData.getValue()).getMasti())).asObject();});
+
+        nuvrij.setItems(NuVrijList);
+        nuvrij.refresh();
     }
+
 
 }

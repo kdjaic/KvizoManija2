@@ -17,6 +17,12 @@ public class ZivotinjeController {
     @FXML
     private Button btnZiv;
 
+    @FXML
+    private Button btnToNe;
+
+    @FXML
+    private Button btnVisIzb;
+
     public void GoOdjava() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/sample.fxml"));
         Parent root = loader.load();
@@ -33,5 +39,17 @@ public class ZivotinjeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/VrsteZiv.fxml"));
         Parent root = loader.load();
         btnZiv.getScene().setRoot(root);
+    }
+
+    public void GoToNe() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ZivotinjePrijeKK.fxml"));
+        Parent root = loader.load();
+        btnToNe.getScene().setRoot(root);
+    }
+
+    public void GoVisIz() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ZivotinjePrijeK.fxml"));
+        Parent root = loader.load();
+        btnVisIzb.getScene().setRoot(root);
     }
 }

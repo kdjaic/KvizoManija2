@@ -1,10 +1,16 @@
 package sample;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -16,70 +22,41 @@ public class PovKalController {
     @FXML
     private Button btnPovratak;
 
-    /**
-     * Button za prikaz sijecnja
-     */
     @FXML  Button btnSijecanj;
 
-    /**
-     * Button za prikaz veljace
-     */
     @FXML  Button btnVeljaca;
 
-    /**
-     * Button za prikaz ozujka
-     */
     @FXML  Button btnOzujak;
 
-    /**
-     * Button za prikaz travnja
-     */
     @FXML  Button btnTravanj;
 
-    /**
-     * Button za prikaz svibnja
-     */
     @FXML  Button btnSvibanj;
 
-    /**
-     * Button za prikaz lipnja
-     */
     @FXML  Button btnLipanj;
 
-    /**
-     * Button za prikaz srpnja
-     */
     @FXML  Button btnSrpanj;
 
-    /**
-     * Button za prikaz kolovoza
-     */
     @FXML  Button btnKolovoz;
 
-    /**
-     * Button za prikaz rujna
-     */
     @FXML  Button btnRujan;
 
-    /**
-     * Button za prikaz listopada
-     */
     @FXML  Button btnListopad;
 
-    /**
-     * Button za prikaz studenog
-     */
     @FXML  Button btnStudeni;
 
-    /**
-     * Button za prikaz prosinca
-     */
     @FXML  Button btnProsinac;
 
-    /**
-     * TextArea za prikaz mjeseci
-     */
-    @FXML  TextArea lblText;
+    private ObservableList<PovKal> PovKalList;
+
+    @FXML
+    TableView<PovKal> povkal = new TableView<>();
+
+    @FXML
+    TableColumn<PovKal, String> datum = new TableColumn<>();
+
+    @FXML
+    TableColumn<PovKal, String> dogadjaj = new TableColumn<>();
+
 
     public void GoOdjava() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/sample.fxml"));
@@ -93,291 +70,458 @@ public class PovKalController {
         btnPovratak.getScene().setRoot(root);
     }
 
-    /**
-     * Metoda za prikaz sijecnja
-     */
     public void prikaziSijecanj(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select sijecanj from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Sijecanj'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("sijecanj");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
-            }
-        } catch (Exception ex){
-            lblText.setText("Greška");
-        }
-    }
 
-    /**
-     * Metoda za prikaz veljace
-     */
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
+            }
+
+        } catch (Exception e) {
+        }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
+}
+
     public void prikaziVeljaca(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select veljaca from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Veljaca'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("veljaca");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz ozujka
-     */
     public void prikaziOzujak(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select ozujak from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Ozujak'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("ozujak");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz travnja
-     */
     public void prikaziTravanj(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select travanj from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Travanj'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("travanj");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz svibnja
-     */
     public void prikaziSvibanj(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select svibanj from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Svibanj'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("svibanj");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz lipnja
-     */
     public void prikaziLipanj(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select lipanj from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Lipanj'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("lipanj");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz srpnja
-     */
     public void prikaziSrpanj(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select srpanj from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Srpanj'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("srpanj");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz kolovoza
-     */
     public void prikaziKolovoz(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select kolovoz from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Kolovoz'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("kolovoz");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz rujna
-     */
     public void prikaziRujan(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select rujan from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Rujan'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("rujan");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz listopada
-     */
     public void prikaziListopad(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select listopad from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Listopad'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("listopad");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz studenog
-     */
     public void prikaziStudeni(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select studeni from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Studeni'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("studeni");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 
-    /**
-     * Metoda za prikaz prosinca
-     */
     public void prikaziProsinac(){
-        lblText.setText(null);
+
         Connection conn;
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:KvizoManija.db");
-            ps = conn.prepareStatement("select prosinac from Mjeseci");
+            ps = conn.prepareStatement("select datum, dogadjaj from Mjeseci where ime='Prosinac'");
             rs = ps.executeQuery();
-            while (rs.next()){
-                String s = rs.getString("prosinac");
-                if (s == null){
-                    s = " ";
-                }
-                lblText.appendText(s + "\n");
+
+            PovKalList = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+
+                String datum = rs.getString("datum");
+                String dogadjaj = rs.getString("dogadjaj");
+
+
+                PovKalList.add(new PovKal(datum, dogadjaj));
+
             }
-        } catch (Exception ex){
-            lblText.setText("Greška");
+
+        } catch (Exception e) {
         }
+
+        datum.setCellValueFactory(new PropertyValueFactory<>("datum"));
+        dogadjaj.setCellValueFactory(new PropertyValueFactory<>("dogadjaj"));
+
+
+
+        datum.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDatum()));});
+        dogadjaj.setCellValueFactory(cellData -> { return (new SimpleStringProperty(((PovKal)cellData.getValue()).getDogadjaj()));});
+
+        povkal.setItems(PovKalList);
+        povkal.refresh();
     }
 }

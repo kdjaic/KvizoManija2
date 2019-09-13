@@ -2,16 +2,9 @@ package sample;
 
 import java.sql.*;
 
-/**
- * Klasa koja služi za spajanje na bazu podataka
- */
 
 public class SqliteConnection {
 
-    /**
-     * Metoda koja spaja projekt sa bazom podataka
-     * @return vraća konekciju na bazu
-     */
 
     public static Connection connection(){
 

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+
 import java.io.IOException;
 
 public class PocetnaController {
@@ -32,6 +33,10 @@ public class PocetnaController {
 
     @FXML
     private Button btnZiv;
+
+    @FXML
+    private Button btnRezultati;
+
 
 
     public void GoOdjava() throws IOException {
@@ -80,6 +85,12 @@ public class PocetnaController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Zivotinje.fxml"));
         Parent root = loader.load();
         btnZiv.getScene().setRoot(root);
+    }
+
+    public void GoRezultati() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Rezultati.fxml"));
+        Parent root = loader.load();
+        btnRezultati.getScene().setRoot(root);
     }
 
 }

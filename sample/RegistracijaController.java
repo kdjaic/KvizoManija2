@@ -16,75 +16,38 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Klasa koja služi za registraciju korisnika
- */
-
 public class RegistracijaController implements Initializable {
 
-    /**
-     * TextField za upis korisničkog imena
-     */
     @FXML
     TextField KorisnickoIme;
 
-    /**
-     * PasswordField za upis lozinke
-     */
     @FXML
     PasswordField Lozinka;
 
-    /**
-     * TextField za upis imena
-     */
     @FXML
     TextField Ime;
 
-    /**
-     * TextField za upis prezimena
-     */
     @FXML
     TextField Prezime;
 
-    /**
-     * TextField za upis godina
-     */
     @FXML
     TextField Dob;
 
-
-    /**
-     * ToggleGroup sadrži atribute odabira spola
-     */
     @FXML
     ToggleGroup spolOdabir;
 
-    /**
-     * RadioButton za odabir spola
-     */
     @FXML
     RadioButton rbtnMusko;
 
-    /**
-     * RadioButton za odabir spola
-     */
     @FXML
     RadioButton rbtnZensko;
 
-    /**
-     * Label za ispis obavjesti
-     */
     @FXML
     Label lblReg;
 
-    /**
-     * Button za potvrdu registracije
-     */
     @FXML
     Button potvrdi;
-    /**
-     * Button za povratak na login prozor
-     */
+
     @FXML
     Button btnIzlaz;
 
@@ -99,10 +62,6 @@ public class RegistracijaController implements Initializable {
         conn = SqliteConnection.connection();
     }
 
-    /**
-     * Metoda za povratak na login prozor
-     * @throws IOException
-     */
     public void goToLogin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Prijava.fxml"));
         Parent root = loader.load();
